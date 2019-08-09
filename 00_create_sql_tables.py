@@ -8,6 +8,7 @@ cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS players")
 cur.execute("DROP TABLE IF EXISTS teams")
 cur.execute("DROP TABLE IF EXISTS events")
+cur.execute("DROP TABLE IF EXISTS league")
 
 # Create player table
 cur.execute("""
@@ -34,6 +35,16 @@ CREATE TABLE events (
     gameweek_id INTEGER,
     name TEXT,
     deadline_time TEXT
+)
+""")
+
+# Create league table
+cur.execute("""
+CREATE TABLE league (
+    entry_id INTEGER,
+    entry_name TEXT,
+    player_first_name TEXT,
+    player_second_name TEXT
 )
 """)
 

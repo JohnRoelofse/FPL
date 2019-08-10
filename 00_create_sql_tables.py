@@ -9,6 +9,7 @@ cur.execute("DROP TABLE IF EXISTS players")
 cur.execute("DROP TABLE IF EXISTS teams")
 cur.execute("DROP TABLE IF EXISTS events")
 cur.execute("DROP TABLE IF EXISTS league")
+cur.execute("DROP TABLE IF EXISTS gameweek_picks")
 
 # Create player table
 cur.execute("""
@@ -44,6 +45,18 @@ CREATE TABLE league (
     entry_id INTEGER,
     entry_name TEXT,
     player_name TEXT
+)
+""")
+
+# Create gameweek picks table
+cur.execute("""
+CREATE TABLE gameweek_picks (
+    gameweek_id INT,
+    entry_id INT,
+    player_id INT,
+    position INT,
+    is_captain INT,
+    is_vice_captain INT
 )
 """)
 

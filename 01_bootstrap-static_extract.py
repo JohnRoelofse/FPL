@@ -1,23 +1,19 @@
 # Load libraries
-import ssl
-import urllib.request, urllib.parse, urllib.error
-import json
+from authentication import authenticate
+import requests
 import sqlite3
 
-# Ignore SSL certificate errors
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
-
-# Specify url and parameters 
+# Specify url 
 url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
 
+# Start session
+session = requests.session()
+
 # Retrieve data from url
-uh = urllib.request.urlopen(url, context=ctx)
-data = uh.read().decode()
+get_request = session.get(url)
 
 # Deserialise (decode) JSON to Python objects
-js = json.loads(data)
+js = get_request.json()
 
 # Extract event, team and player data from JSON
 events = js['events']

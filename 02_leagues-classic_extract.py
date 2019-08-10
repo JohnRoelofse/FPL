@@ -1,29 +1,21 @@
 # Load libraries
-import ssl
-import urllib.request, urllib.parse, urllib.error
-import json
 import sqlite3
+from authentication import authenticate
 
-# Ignore SSL certificate errors
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+# Start authenticated session
+session = authenticate()
 
-# Provide authentication
-
-
-# Specify url and parameters 
+# Specify url
 url = 'https://fantasy.premierleague.com/api/leagues-classic/372970/standings/'
 
 # Retrieve data from url
-uh = urllib.request.urlopen(url, context=ctx)
-data = uh.read().decode()
+get_request = session.get(url)
 
 # Deserialise (decode) JSON to Python objects
-js = json.loads(data)
+js = get_request.json()
 
-# Extract Entries from JSON
-entries = js['new_entries']
+# Extract dictionary containing entry IDs
+league = js['standings']['results']
 
 ### Store data in fpl sqlite3 database
 
@@ -31,10 +23,10 @@ entries = js['new_entries']
 conn = sqlite3.connect('fpl.sqlite')
 cur = conn.cursor()
 
-# Events 
-for item in entries:
-    cur.execute("INSERT INTO league (entry_id, entry_name, player_first_name, player_second_name) VALUES ( ?, ?, ?, ? )", 
-                    (item['entry'], item['entry_name'], item['player_first_name'], item['player_second_name']))
+# Insert  
+for item in league:
+    cur.execute("INSERT INTO league (entry_id, entry_name, player_name) VALUES ( ?, ?, ? )", 
+                    (item['entry'], item['entry_name'], item['player_name']))
 
 # Commit changes
 conn.commit()

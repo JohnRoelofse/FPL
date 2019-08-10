@@ -43,8 +43,7 @@ cur.execute("""
 CREATE TABLE league (
     entry_id INTEGER,
     entry_name TEXT,
-    player_first_name TEXT,
-    player_second_name TEXT
+    player_name TEXT
 )
 """)
 

@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Victor Moses' Lawn</title>
+        <title> Victor Moses Lawn</title>
     </head>
     <body>
-        Live table: 
-        1. Giroud's awakening
+        <table>
+            <tr>
+                <th>Captain</th>
+                <th>Percent</th>
+            </tr>
+                {% for row in captain %}
+            <tr>
+                <td>{{ row }}</td>
+                <td>{{ captain[row] }}</td>
+            </tr>
+                {% endfor %}
+        </table>
     </body>
 </html>

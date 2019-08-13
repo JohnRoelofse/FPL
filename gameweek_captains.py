@@ -1,4 +1,4 @@
-def captains():
+def gw_captains():
     import sqlite3
 
     # Open connection to database

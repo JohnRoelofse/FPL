@@ -6,3 +6,6 @@ app = Flask(__name__)
 def index():
     captains = gw_captains()
     return render_template('welcome_page.html', captains = captains)
+
+if __name__ = "__main__":
+    app.run()

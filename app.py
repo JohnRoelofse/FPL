@@ -5,8 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     captains = gw_captains()
-    return 'I LOVE YOU NATALIE'
-    #return render_template('welcome_page.html', captains = captains)
+    return render_template('welcome_page.html', captains = captains)
 
 #if __name__ = "__main__":
 #    app.run()

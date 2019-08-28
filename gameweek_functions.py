@@ -2,7 +2,7 @@ def check_gameweek():
     """
     This function checks what the current gameweek is and returns that value as an integer.
 
-    It does this by:
+    This is done by:
         - Extracting a list of the gameweeks and their start times from the events table
         - Converting the start time to a datetime.datetime object
         - Comparing the gameweek start times to the time now
@@ -35,13 +35,10 @@ def check_gameweek():
         if gameweek == 1:
             if utcnow < gameweek_time_start_dict[gameweek]:
                 return gameweek
-                break
             elif utcnow > gameweek_time_start_dict[gameweek] and utcnow < gameweek_time_start_dict[gameweek+1]:
                 return gameweek
-                break
         elif utcnow > gameweek_time_start_dict[gameweek] and utcnow < gameweek_time_start_dict[gameweek+1]:
             return gameweek
-            break
         elif gameweek == 38:
             return 38
 
@@ -53,7 +50,7 @@ def gameweek_captains():
     cur = conn.cursor()
 
     # Specify gameweek
-    gameweek = 1
+    gameweek = check_gameweek()
 
     # Work out gameweek captain picks
     most_captained = cur.execute(f"""

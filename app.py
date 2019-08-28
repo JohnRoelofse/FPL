@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from gameweek_functions import gw_captains
+from gameweek_functions import gameweek_captains
 app = Flask(__name__)
 
 @app.route('/')

@@ -43,6 +43,9 @@ def check_gameweek():
             return 38
 
 def gameweek_captains():
+    """
+    This function determines the most captained player for the current gameweek.
+    """
     import sqlite3
 
     # Open connection to database

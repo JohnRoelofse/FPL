@@ -21,5 +21,5 @@ scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_de
 def bingo():
     print('Bingo! It\'s working!')
 
-scheduler.add_job(bingo, 'interval', minutes=1)
+scheduler.add_job(bingo, 'interval', minutes=1, id='1234', replace_existing=True)
 scheduler.start()

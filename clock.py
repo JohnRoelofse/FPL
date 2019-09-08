@@ -15,6 +15,7 @@ job_defaults = {
     'coalesce': False,
     'max_instances': 3
 }
+
 scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
 
 def bingo():

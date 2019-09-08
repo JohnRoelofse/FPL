@@ -1,11 +1,11 @@
+import sqlalchemy
 from pytz import utc
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
-import sqlalchemy
 
 jobstores = {
-    'default': SQLAlchemyJobStore(url='sqlite:///jobs.sqlite', engine=sqlalchemy.create_engine('sqlite:///jobs.sqlite'))
+    'default': SQLAlchemyJobStore(url='sqlite:///jobs.sqlite')
 }
 executors = {
     'default': ThreadPoolExecutor(20),
